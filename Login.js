@@ -3,15 +3,36 @@ import { SafeAreaView, StyleSheet, TextInput, Text, TouchableOpacity } from "rea
 
 const sendText = async (phoneNumber) => {
   // using fetch do a POST to https://dev.stedi.me/twofactorlogin/360-601-5440
-  await fetch("https://dev.stedi.me/twofactorlogin/"+phoneNumber,{
+  const loginResponse = await fetch("https://dev.stedi.me/twofactorlogin/"+phoneNumber,{
     method: "POST",
     headers: {
       "Content-Type": "applications/text"
     }
 
   });
+  const loginResponseText = await loginResponse.text();//converts the promise to a string by using await
+  console.log("Login Response", loginResponse.text())
   console.log("PhoneNumber: " ,phoneNumber);
 };
+
+
+const getToken = async({phoneNumber,oneTimePassword}) =>{ 
+  console.log("PhoneNumber",phoneNumber);
+  const loginResponse = await fetch("https://dev.stedi.me/twofactorlogin/",{
+    method: "POST",
+    headers: {
+      "Content-Type": "applications/json"
+    },
+    body:(
+      phoneNumber,
+      oneTimePassword
+   )
+  });
+  const token = await loginResponse.text();
+  console.log(token);
+}
+
+
 
 const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
