@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 function AppName() {
     return (
       <View style={styles.appName}>
-        <Text style={styles.text}>STEDI Balance</Text>
+        <Text style={styles.text}>Stedi Balance</Text>
       </View>
     );
   }

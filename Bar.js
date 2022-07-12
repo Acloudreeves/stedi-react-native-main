@@ -3,17 +3,18 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import AppName from "./AppName";
 import Setting from "./Setting";
 
-function Bar() {
+function Bar(props) {
+    console.log('Logged In User: ', props.loggedInUser)
+    const email = props.loggedInUser
     return(
         <View style={styles.bar}>
             <AppName />
+            <Text style={styles.email}>{email}</Text>
             <Setting />  
         </View>
     )
   }
-
 export default Bar
-
 const styles = StyleSheet.create({
     bar: {
         flexDirection: 'row',
@@ -25,6 +26,10 @@ const styles = StyleSheet.create({
         paddingBottom: 5,
         paddingLeft: 10,
         paddingRight: 10,
-        
+
       },
+      email:{
+        width: 90,
+        color: "#ffffff"
+      }
 })
